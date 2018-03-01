@@ -131,8 +131,8 @@ namespace TiledSharp
         public string Format {get; private set;}
         public Stream Data {get; private set;}
         public TmxColor Trans {get; private set;}
-        public int? Width {get; private set;}
-        public int? Height {get; private set;}
+        public int Width {get; private set;}
+        public int Height {get; private set;}
 
         public TmxImage(XElement xImage, string tmxDir = "")
         {
@@ -140,10 +140,8 @@ namespace TiledSharp
 
             var xSource = xImage.Attribute("source");
 
-            if (xSource != null)
-                // Append directory if present
-                Source = Path.Combine(tmxDir, (string)xSource);
-            else {
+            Source = (string)xSource;
+            if (xSource == null) {
                 Format = (string)xImage.Attribute("format");
                 var xData = xImage.Element("data");
                 var decodedStream = new TmxBase64Data(xData);
@@ -151,8 +149,8 @@ namespace TiledSharp
             }
 
             Trans = new TmxColor(xImage.Attribute("trans"));
-            Width = (int?)xImage.Attribute("width");
-            Height = (int?)xImage.Attribute("height");
+            Width = (int)xImage.Attribute("width");
+            Height = (int)xImage.Attribute("height");
         }
     }
 

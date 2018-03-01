@@ -20,8 +20,8 @@ namespace TiledSharp
         public int TileHeight {get; private set;}
         public int Spacing {get; private set;}
         public int Margin {get; private set;}
-        public int? Columns {get; private set;}
-        public int? TileCount {get; private set;}
+        public int Columns {get; private set;}
+        public int TileCount {get; private set;}
 
         public Dictionary<int, TmxTilesetTile> Tiles {get; private set;}
         public TmxTileOffset TileOffset {get; private set;}
@@ -74,8 +74,8 @@ namespace TiledSharp
                 TileHeight = (int) xTileset.Attribute("tileheight");
                 Spacing = (int?) xTileset.Attribute("spacing") ?? 0;
                 Margin = (int?) xTileset.Attribute("margin") ?? 0;
-                Columns = (int?) xTileset.Attribute("columns");
-                TileCount = (int?) xTileset.Attribute("tilecount");
+                Columns = (int) xTileset.Attribute("columns");
+                TileCount = (int) xTileset.Attribute("tilecount");
                 TileOffset = new TmxTileOffset(xTileset.Element("tileoffset"));
                 Image = new TmxImage(xTileset.Element("image"), tmxDir);
 
